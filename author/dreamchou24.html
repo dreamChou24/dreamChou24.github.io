@@ -1,65 +1,163 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
         <title>dreamChou24's Blog - Articles by dreamChou24</title>
-        <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="/theme/css/rdark.css" />
-	<link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
-        <link href="/" type="application/atom+xml" rel="alternate" title="dreamChou24's Blog ATOM Feed" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	
-<!-- Using MathJax, with the delimiters $ -->
-<!-- Conflict with pygments for the .mo and .mi -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-  "HTML-CSS": {
-  styles: {
-  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
-  },
-  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
-  });
-</script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="http://hongday.net/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://hongday.net/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://hongday.net/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+		<meta property="og:locale" content="zh">
+		<meta property="og:site_name" content="dreamChou24's Blog">
 </head>
-</head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">dreamChou24's Blog <strong></strong></a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
-            <li><a href="/pages/About.html">About</a></li>
-        </ul></nav><!-- /#menu -->
-<section id="content">
-<h2>Articles by dreamChou24</h2>
+<body>
 
-<ol id="post-list">
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/first-blog.html" rel="bookmark" title="Permalink to 这个博客的前世今生">这个博客的前世今生</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="2016-09-09T12:10:00+08:00"> 2016-09-09 </abbr>
-                    <address class="vcard author">By
-                        <a class="url fn" href="/author/dreamchou24.html">dreamChou24</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>研究了很久关于个人博客如何创建。</p>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://hongday.net/">dreamChou24's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="http://hongday.net/pages/About.html">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://hongday.net/theme/images/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Articles by dreamChou24</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-preview">
+            <a href="http://hongday.net/first-blog.html" rel="bookmark" title="Permalink to 这个博客的前世今生">
+                <h2 class="post-title">
+                    这个博客的前世今生
+                </h2>
+            </a>
+                <p>研究了很久关于个人博客如何创建。</p>
 <p>为此专门学习了Django框架，然后觉得组件过多而当我完成的时候发现Django的组件几乎没有使用到。</p>
 <p>于是又去学习Tornado框架，这框架结构清晰，当我完成了个人博客后，才一个py文件。
-逛社区的时候，大多人数都在用flask框架，于是将我那一个py文件的博客用flask框架重写了一遍。</p>
-<p>事实是，即使买了阿里云，还用上了Memcache,MongoDB,Nginx，折腾半天，每当访问博客的时候都在恶心，‘这界面太丑了吧’。
-决定还是不造轮子了，默默的把我写的博客代码收好，我开始在服务器上折腾起了Wordpress。</p>
-<p>用了一段时间，几乎与用tornado框架编写的博客持续时间差不多，又开始恶心了。Wordpress组件之多，主题之复杂，本身还时不时在后台推送更新，这对于我中等洁癖和强迫症患者来说，几乎是不能忍了。</p>
-<p>这就是这个博客的前身经历，经历就是连数据都给我清的一干而尽，阿里云每个月的租金我也不打算交了。接下里的时间里我将投入Github Pages+Pelican的怀抱。这个静态页面生成和无限流量供应的组合，简直是充满了Geek风格。</p>
-<p>以上。</p> </div><!-- /.entry-content -->
-        </article></li>
-</ol><!-- /#posts-list -->
-</section><!-- /#content -->
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
+逛社区的时候， ...
+            <p class="post-meta">Posted by
+                    <a href="http://hongday.net/author/dreamchou24.html">dreamChou24</a>
+                 on 2016-09-09 12:10
+            </p>
+        </div>
+        <hr>
+
+    <!-- Pager -->
+    <ul class="pager">
+        <li class="next">
+        </li>
+    </ul>
+    Page 1 / 1
+    <hr>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Blog powered by <a href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://hongday.net/theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://hongday.net/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://hongday.net/theme/js/clean-blog.min.js"></script>
+
 </body>
+
 </html>
