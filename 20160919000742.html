@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Git工具和Go语言</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://hongday.net/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://hongday.net/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://hongday.net/theme/css/code_blocks/monokai.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="最近折腾了一下open-falcon，一个小米开源的监控系统。 open-falcon有多个组件构成。以go语言为主进行开发，并全部开源在github上，因此服务器环境最好有git命令。 服务器环境是centos 6.5。 go语言 ...">
+
+        <meta name="author" content="dreamChou24">
+
+        <meta name="tags" content="Golang">
+        <meta name="tags" content="Git">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="dreamChou24'Blog">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="http://hongday.net/author/dreamchou24.html">
+	<meta property="og:url" content="http://hongday.net/20160919000742.html">
+	<meta property="og:title" content="Git工具和Go语言">
+	<meta property="article:published_time" content="2016-09-19 00:07:42+02:00">
+            <meta property="og:description" content="最近折腾了一下open-falcon，一个小米开源的监控系统。 open-falcon有多个组件构成。以go语言为主进行开发，并全部开源在github上，因此服务器环境最好有git命令。 服务器环境是centos 6.5。 go语言 ...">
+
+            <meta property="og:image" content="http://hongday.net/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@#">
+        <meta name="twitter:title" content="Git工具和Go语言">
+
+            <meta name="twitter:image" content="http://hongday.net/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="最近折腾了一下open-falcon，一个小米开源的监控系统。 open-falcon有多个组件构成。以go语言为主进行开发，并全部开源在github上，因此服务器环境最好有git命令。 服务器环境是centos 6.5。 go语言 ...">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://hongday.net/">dreamChou24'Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://hongday.net/archives.html">Archives</a></li>
+                    <li><a href="http://hongday.net/categories.html">Categories</a></li>
+                    <li><a href="http://hongday.net/tags.html">Tags</a></li>
+                            <li><a href="http://hongday.net/pages/About.html">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://hongday.net/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Git工具和Go语言</h1>
+                        <span class="meta">Posted by
+                                <a href="http://hongday.net/author/dreamchou24.html">dreamChou24</a>
+                             on 一 19 九月 2016
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>最近折腾了一下open-falcon，一个小米开源的监控系统。
+open-falcon有多个组件构成。以go语言为主进行开发，并全部开源在github上，因此服务器环境最好有git命令。</p>
+<p>服务器环境是centos 6.5。</p>
+<blockquote>
+<p>go语言</p>
+</blockquote>
+<p>下载语言包，并不需要编译，直接解压出来文件夹，路径是/usr/local/go。</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+wget http://www.golangtc.com/static/go/1.7/go1.7.linux-amd64.tar.gz
+tar -zxvf go1.7.linux-amd64.tar.gz
+mv go /usr/local/
+</pre></div>
+
+
+<p>go语言需要为其设定一个源码，可执行文件，包管理的统一路径，这里我设置为/opt/go-workspace。
+将以上新增进环境变量文件。</p>
+<div class="highlight"><pre><span></span><span class="x">vim /etc/profile</span>
+<span class="x">......</span>
+<span class="x">export GOROOT=&quot;/usr/local/go&quot;</span>
+<span class="x">export GOPATH=&quot;/opt/go-workspace&quot;</span>
+<span class="x">export PATH=&quot;</span><span class="p">$</span><span class="nv">GOROOT</span><span class="x">/bin:</span><span class="p">$</span><span class="nv">PATH</span><span class="x">&quot;</span>
+<span class="x">source /etc/profile</span>
+</pre></div>
+
+
+<p>这个时候环境已经搭建好了，可以做个测试，编写helloworld文件。
+go语言的源码存放在$GOPATH/src下，源码编译后存放在$GOPATH/bin下，各种包存放在$GOPATH/pkg下。</p>
+<div class="highlight"><pre><span></span><span class="x">mkdir -p </span><span class="p">$</span><span class="nv">GOPATH</span><span class="x">/bin</span>
+<span class="x">mkdir -p </span><span class="p">$</span><span class="nv">GOPATH</span><span class="x">/src</span>
+<span class="x">mkdir -p </span><span class="p">$</span><span class="nv">GOPATH</span><span class="x">/pkg</span>
+<span class="x">mkdir -p </span><span class="p">$</span><span class="nv">GOPATH</span><span class="x">/src/testProject</span>
+</pre></div>
+
+
+<p>创建项目testProject，在其下编写一个helloworld.go的文件。
+并对其编译，编译的时候任意路径执行<code>go install testProject</code>或者在<code>$GOPATH/src/testProject</code>下执行<code>go install</code></p>
+<div class="highlight"><pre><span></span><span class="n">vim</span> <span class="err">$</span><span class="n">GOPATH</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">testProject</span><span class="o">/</span><span class="n">helloworld</span><span class="o">.</span><span class="n">go</span>
+<span class="n">package</span> <span class="n">main</span>
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+<span class="n">func</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;Hello,World!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">go</span> <span class="n">install</span> <span class="n">testProject</span>
+<span class="n">cd</span> <span class="err">$</span><span class="n">GOPATH</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">./</span><span class="n">testProject</span>
+<span class="n">Hello</span><span class="p">,</span><span class="n">World</span><span class="err">!</span>
+</pre></div>
+
+
+<p>甚至将这个testProject移动其他机器上（windows的不知如何验证），即使没有任何go语言环境。</p>
+<blockquote>
+<p>git命令</p>
+</blockquote>
+<p>下载安装前确保基础环境。</p>
+<div class="highlight"><pre><span></span>yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker
+</pre></div>
+
+
+<p>下载和安装。</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+wget https://github.com/git/git/archive/v2.9.3.zip
+unzip v2.9.3.zip
+cd git-2.9.3
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install
+</pre></div>
+
+
+<p>将git命令加入环境变量。</p>
+<div class="highlight"><pre><span></span><span class="x">vim /etc/profile</span>
+<span class="x">......</span>
+<span class="x">export PATH=&quot;/usr/local/git:</span><span class="p">$</span><span class="nv">PATH</span><span class="x">&quot;</span>
+<span class="x">source /etc/profile</span>
+</pre></div>
+
+
+<p>这时就可以使用<code>git clone</code>等好用的命令了。</p>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="http://hongday.net/tag/golang.html">Golang</a>, <a href="http://hongday.net/tag/git.html">Git</a></p>
+        </div>
+
+    <hr>
+
+        <div class="comments">
+            <!-- 多说热评文章 start -->
+			<div class="ds-top-threads" data-range="daily" data-num-items="5"></div>
+			<!-- 多说热评文章 end -->
+        	<!-- 多说最新评论 start -->
+			<div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+			<!-- 多说最新评论 end -->
+            <!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="20160919000742" data-title="Git工具和Go语言" data-url="http://hongday.net/20160919000742.html"></div>
+			<!-- 多说评论框 end -->
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://hongday.net/theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://hongday.net/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="http://hongday.net/theme/js/clean-blog.min.js"></script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hongday"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</body>
+
+</html>
