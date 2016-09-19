@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Php7略不同于Php5的环境安装部署</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://static.hongday.net/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://static.hongday.net/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://static.hongday.net/theme/css/code_blocks/monokai.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="目录 Php7的前世今生 环境说明 Php5与Php7安装时的差异 PHP7安装前环境准备 Php7和Apache Php7和Nginx Php7的前世今生 以下来自鸟哥 PHP7开始于2014年春节，因为基于PHP-5.5的Opcache ...">
+
+        <meta name="author" content="dreamChou24">
+
+        <meta name="tags" content="Apache">
+        <meta name="tags" content="Nginx">
+        <meta name="tags" content="Php">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="dreamChou24'Blog">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="http://hongday.net/author/dreamchou24.html">
+	<meta property="og:url" content="http://hongday.net/20160919233626.html">
+	<meta property="og:title" content="Php7略不同于Php5的环境安装部署">
+	<meta property="article:published_time" content="2016-09-19 23:36:26+02:00">
+            <meta property="og:description" content="目录 Php7的前世今生 环境说明 Php5与Php7安装时的差异 PHP7安装前环境准备 Php7和Apache Php7和Nginx Php7的前世今生 以下来自鸟哥 PHP7开始于2014年春节，因为基于PHP-5.5的Opcache ...">
+
+            <meta property="og:image" content="http://hongday.net/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@#">
+        <meta name="twitter:title" content="Php7略不同于Php5的环境安装部署">
+
+            <meta name="twitter:image" content="http://static.hongday.net/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="目录 Php7的前世今生 环境说明 Php5与Php7安装时的差异 PHP7安装前环境准备 Php7和Apache Php7和Nginx Php7的前世今生 以下来自鸟哥 PHP7开始于2014年春节，因为基于PHP-5.5的Opcache ...">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://hongday.net/">dreamChou24'Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://hongday.net/archives.html">Archives</a></li>
+                    <li><a href="http://hongday.net/categories.html">Categories</a></li>
+                    <li><a href="http://hongday.net/tags.html">Tags</a></li>
+                            <li><a href="http://hongday.net/pages/About.html">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://static.hongday.net/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Php7略不同于Php5的环境安装部署</h1>
+                        <span class="meta">Posted by
+                                <a href="http://hongday.net/author/dreamchou24.html">dreamChou24</a>
+                             on 一 19 九月 2016
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>目录</p>
+<ol>
+<li><a href="#one">Php7的前世今生</a></li>
+<li><a href="#two">环境说明</a></li>
+<li><a href="#three">Php5与Php7安装时的差异</a></li>
+<li><a href="#four">PHP7安装前环境准备</a></li>
+<li><a href="#five">Php7和Apache</a></li>
+<li><a href="#six">Php7和Nginx</a></li>
+</ol>
+<p><span id="one"></span></p>
+<blockquote>
+<p>Php7的前世今生</p>
+</blockquote>
+<p>以下来自鸟哥</p>
+<p>PHP7开始于2014年春节，因为基于PHP-5.5的Opcache JIT因为无法得到期望而搁置了,并且让鸟哥等人认识到, 基础部分还不够好, 并不能很好的支持JIT, 所以开始了重构项目,希望通过得到30%以上的提升。随后发现性能提升比我们想象的还要大，于是定名为PHP NG项目。</p>
+<p>经过发起投票, 绝大部分人都支持了PHP NG项目, 并决定以PHP NG为基础, 开发新版的PHP。社区曾开发过PHP6，后来PHP6的特性在PHP5.5，5.6等版本都逐渐实现，所以PHP6被搁置。经过社区投票，新项目命名为PHP7。</p>
+<p>在这近两年的时间里，各种新特性的加入, 性能的持续提升，很多以前不合理的地方改进等等, 都加入到了PHP7, 让PHP7越来越丰满. 从最底层的ZVAL的改变, 到标量类型提示, 从最初的30%的性能提升, 到现在超过100%的性能飞跃, 每一处变化都让人值得期待. 然后经过几次不情愿的跳票, 终于, 到今天, 这一切都将呈现于你面前。
+<span id="two"></span></p>
+<blockquote>
+<p>环境说明</p>
+</blockquote>
+<p>Php版本:：php-7.0.10</p>
+<p>Centos版本：CentOS release 6.5 (Final)
+<span id="three"></span></p>
+<blockquote>
+<p>PHP5与PHP7安装时的差异</p>
+</blockquote>
+<p>下载两个版本的源码包，php-5.6.25和php-5.6.25。进入文件夹，执行命令可以看到编译安装时，两个版本使用参数的差异性。参数很多，通过对比可以更直观的发现改变的地方。</p>
+<p>（1）参数--with-mysql=DIR废弃
+PHP用于连接MYSQL数据库的扩展有四种：<code>--with-mysql、--with-mysqlli、--with-pdo-mysql、--enable-mysqlnd</code>。</p>
+<p>在Php5.5+以后，官方就不再推荐使用<code>--with-mysql</code>扩展，而是使用<code>--with-mysqlli</code>作为替代。并且<code>--enable-mysqlnd</code>作为官方源码包自带的扩展开始被推荐。</p>
+<p>到了Php7，<code>--with-mysql</code>直接被废弃，保留了<code>--with-mysqlli</code>、<code>--with-pdo-mysql</code>，但是<code>--enable-mysqlnd</code>变得更加成熟和性能卓越，因此官方是强烈推荐使用此扩展的。</p>
+<div class="highlight"><pre><span></span>[root@localhost php-5.6.25]# ./configure -h | grep mysql
+  --with-mysql=DIR        Include MySQL support.  DIR is the MySQL base
+                          mysqlnd the MySQL native driver will be used
+  --with-mysql-sock=SOCKPATH
+  --with-mysqli=FILE      Include MySQLi support.  FILE is the path
+                          to mysql_config.  If no value or mysqlnd is passed
+  --enable-embedded-mysqli
+  --with-pdo-mysql=DIR    PDO: MySQL support. DIR is the MySQL base directory
+                          If no value or mysqlnd is passed as DIR, the
+  --enable-mysqlnd        Enable mysqlnd explicitly, will be done implicitly
+  --disable-mysqlnd-compression-support
+                          Disable support for the MySQL compressed protocol in mysqlnd
+  --with-zlib-dir=DIR     mysqlnd: Set the path to libz install prefix
+
+[root@localhost php-7.0.10]# ./configure -h | grep mysql
+  --with-mysqli=FILE      Include MySQLi support.  FILE is the path
+                          to mysql_config.  If no value or mysqlnd is passed
+  --enable-embedded-mysqli
+  --with-mysql-sock=SOCKPATH
+  --with-pdo-mysql=DIR    PDO: MySQL support. DIR is the MySQL base directory
+                          If no value or mysqlnd is passed as DIR, the
+  --enable-mysqlnd        Enable mysqlnd explicitly, will be done implicitly
+  --disable-mysqlnd-compression-support
+                          Disable support for the MySQL compressed protocol in mysqlnd
+  --with-zlib-dir=DIR     mysqlnd: Set the path to libz install prefix
+</pre></div>
+
+
+<p>（2）opcache扩展由默认关闭改为默认开启
+PHP以前的版本使用第三方扩展 apc，apc缓存分为系统缓存和用户缓存。php5.5以后，引入opcache加速器，官方自带扩展，提供系统缓存功能。需要使用时使用参数--enable-opcache开启。
+在Php7后，opache性能提升，官方也将其作为默认的提供Php加速功能的扩展，如有特殊需求，需要在编译使指明--disable-opcache。</p>
+<div class="highlight"><pre><span></span>[root@localhost php-5.6.25]# ./configure -h | grep opcache
+  --enable-opcache        Enable Zend OPcache support
+[root@localhost php-7.0.10]# ./configure -h | grep opcache
+  --disable-opcache       Disable Zend OPcache support
+  --disable-opcache-file  Disable file based caching
+</pre></div>
+
+
+<p>更多信息可以参考:<a href="http://static.hongday.net/phpdiff.html">php5和php7的configure参数对比</a>
+<span id="four"></span></p>
+<blockquote>
+<p>PHP7安装前环境准备</p>
+</blockquote>
+<p>源码编译基础环境</p>
+<div class="highlight"><pre><span></span>yum -y install gcc gcc-c++
+</pre></div>
+
+
+<p>Php编译基础环境</p>
+<div class="highlight"><pre><span></span>yum -y install flex bison autoconf automake libtool
+</pre></div>
+
+
+<p>Php扩展编译基础环境</p>
+<div class="highlight"><pre><span></span>yum install libxml2 libxml2-devel openssl-devel bzip2-devel libcurl-devel enchant enchant-devel libpng-devel gmp-devel libc-client libc-client-devel pam-devel firebird-devel libicu-devel openldap openldap-devel libmcrypt-devel unixODBC-devel freetds freetds-devel
+</pre></div>
+
+
+<p>另：如有需要引入mcrypt，re2c扩展，会出现如下错误，因为这两个扩展还未在Yum源中，因此无法通过上述方式进行下载安装，我们只能下载源码包进行编译安装。</p>
+<div class="highlight"><pre><span></span><span class="n">Mcrypt</span><span class="o">:</span>
+<span class="n">configure</span><span class="o">:</span> <span class="n">error</span><span class="o">:</span> <span class="n">mcrypt</span><span class="o">.</span><span class="na">h</span> <span class="n">not</span> <span class="n">found</span><span class="o">.</span> <span class="n">Please</span> <span class="n">reinstall</span> <span class="n">libmcrypt</span><span class="o">.</span>
+<span class="err">下载地址：</span>
+<span class="n">http</span><span class="o">://</span><span class="n">nchc</span><span class="o">.</span><span class="na">dl</span><span class="o">.</span><span class="na">sourceforge</span><span class="o">.</span><span class="na">net</span><span class="sr">/project/mcrypt/Libmcrypt/2.5.8/</span><span class="n">libmcrypt</span><span class="o">-</span><span class="mf">2.5</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="na">tar</span><span class="o">.</span><span class="na">gz</span>
+<span class="n">Re2c</span><span class="o">:</span>
+<span class="n">You</span> <span class="n">will</span> <span class="n">need</span> <span class="n">re2c</span> <span class="mf">0.13</span><span class="o">.</span><span class="mi">4</span> <span class="n">or</span> <span class="n">later</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">regenerate</span> <span class="n">PHP</span> <span class="n">parsers</span><span class="o">.</span>
+<span class="err">下载地址：</span>
+<span class="n">http</span><span class="o">://</span><span class="n">nchc</span><span class="o">.</span><span class="na">dl</span><span class="o">.</span><span class="na">sourceforge</span><span class="o">.</span><span class="na">net</span><span class="sr">/project/re2c/0.16/</span><span class="n">re2c</span><span class="o">-</span><span class="mf">0.16</span><span class="o">.</span><span class="na">tar</span><span class="o">.</span><span class="na">gz</span>
+</pre></div>
+
+
+<p><span id="five"></span></p>
+<blockquote>
+<p>Php7和Apache</p>
+</blockquote>
+<p>（1）安装Apache2.4
+安装apr以及apr-util。</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+wget http://mirrors.cnnic.cn/apache//apr/apr-1.5.2.tar.gz
+tar -zxvf apr-1.5.2.tar.gz &amp;&amp; cd apr-1.5.2
+./configure --prefix=/usr/local/apr
+make &amp;&amp; make install
+
+cd /usr/local/src
+wget http://mirrors.cnnic.cn/apache//apr/apr-util-1.5.4.tar.gz
+tar -zxvf apr-util-1.5.4.tar.gz &amp;&amp; cd apr-util-1.5.4
+./configure --prefix=/usr/local/apr-util --with-apr=/usr/local/apr
+make &amp;&amp; make install
+</pre></div>
+
+
+<p>安装Apache</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+wget http://mirror.bit.edu.cn/apache//httpd/httpd-2.4.23.tar.gz
+tar -zxvf httpd-2.4.23.tar.gz &amp;&amp; cd httpd-2.4.23
+./configure --prefix=/usr/local/httpd-2.4.23 \
+    --with-apr=/usr/local/apr \
+    --with-apr-util=/usr/local/apr-util \
+    --enable-module=so \
+    --enable-mods-shared=all \
+    --enable-deflate \
+    --enable-expires \
+    --enable-headers \
+    --enable-cache \
+    --enable-file-cache \
+    --enable-mem-cache \
+    --enable-disk-cache \
+    --enable-mime-magic \
+    --enable-authn-dbm \
+    --enable-vhost-alias \
+    --enable-so \
+    --enable-rewrite \
+    --enable-ssl \
+    --with-mpm=prefork
+make &amp;&amp; make install
+</pre></div>
+
+
+<p><span id='php7installed'></spn>
+（2）安装Php7
+主要参数为--with-apxs2=/usr/local/httpd-2.4.23/bin/apxs，用于指明向apache安装路径中添加modules/libphp7.so文件，以支持Php7。</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+wget http://cn2.php.net/distributions/php-7.0.11.tar.gz 
+tar -zxvf php-7.0.11.tar.gz &amp;&amp; cd php-7.0.11
+./configure --prefix=/usr/local/php7 \
+--with-apxs2=/usr/local/httpd-2.4.23/bin/apxs \
+--with-config-file-path=/usr/local/php7/etc \
+--enable-mysqlnd \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd \
+--with-gd \
+--with-iconv \
+--with-zlib \
+--enable-xml \
+--enable-bcmath \
+--enable-shmop \
+--enable-sysvsem \
+--enable-inline-optimization \
+--enable-mbregex \
+--enable-fpm \
+--enable-mbstring \
+--enable-ftp \
+--enable-gd-native-ttf \
+--with-openssl \
+--enable-pcntl \
+--enable-sockets \
+--with-xmlrpc \
+--enable-zip \
+--enable-soap \
+--without-pear \
+--with-gettext \
+--enable-session \
+--with-curl \
+--with-jpeg-dir \
+--with-freetype-dir \
+--enable-opcache
+make &amp;&amp; make install
+</pre></div>
+
+
+<p>增加配置文件，还是再Php7的源码包内</p>
+<div class="highlight"><pre><span></span>cp php.ini-production /usr/local/php7/etc/php.ini
+vim /usr/local/php7/etc/php.ini
+# 加入
+zend_extension=/usr/local/php7/lib/php/extensions/no-debug-non-zts-20151012/opcache.so
+</pre></div>
+
+
+<p>查看版本</p>
+<div class="highlight"><pre><span></span>/usr/local/php7/bin/php –v
+PHP 7.0.11-dev (cli) (built: Mar  3 2015 10:02:26)
+Copyright (c) 1997-2015 The PHP Group
+Zend Engine v3.0.0-dev, Copyright (c) 1998-2015 Zend Technologies
+    with Zend OPcache v7.0.4-dev, Copyright (c) 1999-2015, by Zend Technologies
+</pre></div>
+
+
+<p>（3）Apache配置Php7</p>
+<div class="highlight"><pre><span></span>#php7支持
+LoadModule php7_module        modules/libphp7.so
+#添加默认Php文件
+<span class="nt">&lt;IfModule</span> <span class="err">dir_module</span><span class="nt">&gt;</span>
+    DirectoryIndex index.html index.php index.phtml
+<span class="nt">&lt;/IfModule&gt;</span>
+#识别php文件
+<span class="nt">&lt;FilesMatch</span> <span class="err">&quot;\.ph(p[2-6]?|tml)$&quot;</span><span class="nt">&gt;</span>
+    SetHandler application/x-httpd-php
+<span class="nt">&lt;/FilesMatch&gt;</span>
+</pre></div>
+
+
+<p>（4）验证</p>
+<div class="highlight"><pre><span></span><span class="nx">vim</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">httpd</span><span class="o">-</span><span class="mf">2.4</span><span class="p">.</span><span class="mi">23</span><span class="o">/</span><span class="nx">htdocs</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">php</span>
+<span class="cp">&lt;?php</span>
+<span class="nb">phpinfo</span><span class="p">()</span>
+<span class="cp">?&gt;</span>
+<span class="err">/usr/local/httpd-2.4.23/bin/apachectl start</span>
+</pre></div>
+
+
+<p>访问http://ip/index.php，防火墙要注意不要有限制。
+<span id="six"></span></p>
+<blockquote>
+<p>Php7和Nginx</p>
+</blockquote>
+<p>（1）安装nginx1.11</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+wget http://nginx.org/download/nginx-1.11.4.tar.gz
+tar –zxvf nginx-1.11.4.tar.gz &amp;&amp; cd nginx-1.11.4
+./configure --prefix=/usr/local/nginx111 \
+--with-http_stub_status_module \
+--without-http-cache \
+--with-http_ssl_module \
+--with-http_gzip_static_module
+make &amp;&amp; make install
+</pre></div>
+
+
+<p>（2）安装Php7
+主要参数为--enable-fpm，nginx通过调用的fastcgi来实现访问解析.php文件，而php-fpm是一个fastcgi的进程管理，以实现高效控制PHP-CGI的FastCGI进程。</p>
+<p>参考<a href="#php7installed">安装Php7</a></p>
+<p>（3）配置Php-fpm
+进程默认监听9000端口如需改，在/usr/local/php7/etc/php-fpm.d/www.conf中修改。</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src/php-7.0.11
+cp sapi/fpm/init.d.php-fpm /etc/init.d/php7-fpm
+chmod +x /etc/init.d/php7-fpm
+cp /usr/local/php7/etc/php-fpm.conf.default /usr/local/php7/etc/php-fpm.conf
+cp /usr/local/php7/etc/php-fpm.d/www.conf.default /usr/local/php7/etc/php-fpm.d/www.conf
+
+启动：
+[root@localhost php-fpm.d]# /etc/init.d/php7-fpm start
+Starting php-fpm  done
+[root@localhost php-fpm.d]# netstat -nulpt | grep php-fpm
+tcp        0      0 127.0.0.1:9000              0.0.0.0:*                   LISTEN      95122/php-fpm
+停止
+/etc/init.d/php7-fpm stop
+</pre></div>
+
+
+<p>（4）nginx配置</p>
+<div class="highlight"><pre><span></span><span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">init</span><span class="nc">.d</span><span class="o">/</span><span class="nt">php7-fpm</span> <span class="nt">stop</span>
+<span class="nt">cd</span> <span class="o">/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">local</span><span class="o">/</span><span class="nt">nginx111</span><span class="o">/</span><span class="nt">conf</span><span class="o">/</span>
+<span class="nt">vim</span> <span class="nt">nginx</span><span class="nc">.conf</span>
+<span class="err">#确认配置项，一般</span><span class="nt">Nginx</span><span class="nc">.conf</span><span class="err">是有</span><span class="nt">Php</span><span class="err">相关配置的但是默认是注释的。因此取消注释即可。这里不讨论</span><span class="nt">nginx</span><span class="err">相关的优化配置。</span>
+<span class="nt">location</span> <span class="o">~</span> <span class="err">\</span><span class="nc">.php</span><span class="o">$</span> <span class="p">{</span>
+            <span class="n">root</span>           <span class="n">html</span><span class="p">;</span>
+            <span class="n">fastcgi_pass</span>   <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">9000</span><span class="p">;</span>
+            <span class="n">fastcgi_index</span>  <span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="p">;</span>
+            <span class="n">fastcgi_param</span>  <span class="n">SCRIPT_FILENAME</span>  <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="err">$</span><span class="n">fastcgi_script_name</span><span class="p">;</span>
+            <span class="n">include</span>        <span class="n">fastcgi_params</span><span class="p">;</span>
+        <span class="p">}</span>
+</pre></div>
+
+
+<p>（5）验证
+在/data/www/test/下新增一个index.php文件</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nb">phpinfo</span><span class="p">()</span>
+<span class="cp">?&gt;</span>
+</pre></div>
+
+
+<p>启动Nginx</p>
+<div class="highlight"><pre><span></span>/usr/local/nginx111/sbin/nginx
+</pre></div>
+
+
+<p>访问http://ip/index.php，防火墙要注意不要有限制。</p>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="http://hongday.net/tag/apache.html">Apache</a>, <a href="http://hongday.net/tag/nginx.html">Nginx</a>, <a href="http://hongday.net/tag/php.html">Php</a></p>
+        </div>
+
+    <hr>
+
+        <div class="comments">
+            <!-- 多说热评文章 start -->
+			<div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+			<!-- 多说热评文章 end -->
+            <!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="20160919233626" data-title="Php7略不同于Php5的环境安装部署" data-url="http://hongday.net/20160919233626.html"></div>
+			<!-- 多说评论框 end -->
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://static.hongday.net/theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://static.hongday.net/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="http://static.hongday.net/theme/js/clean-blog.min.js"></script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hongday"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</body>
+
+</html>
