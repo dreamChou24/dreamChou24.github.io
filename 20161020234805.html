@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>使用psutil了解CPU的运行状态</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://static.hongday.net/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://static.hongday.net/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://static.hongday.net/theme/css/code_blocks/monokai.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="了解一个操作系统，可以从操作系统的cpu，memory，disk，process，network五个基础方面着手。psutil是python一个跨平台的模块，用于从操作系统获取以上提到的甚至更多的信息。可以在系统监控，分析，进程管理，进程资源管控方面提供帮助。pstuit提 ...">
+
+        <meta name="author" content="dreamChou24">
+
+        <meta name="tags" content="Python">
+        <meta name="tags" content="Psutil">
+        <meta name="tags" content="Linux">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="dreamChou24'Blog">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="http://hongday.net/author/dreamchou24.html">
+	<meta property="og:url" content="http://hongday.net/20161020234805.html">
+	<meta property="og:title" content="使用psutil了解CPU的运行状态">
+	<meta property="article:published_time" content="2016-10-20 23:48:05+02:00">
+            <meta property="og:description" content="了解一个操作系统，可以从操作系统的cpu，memory，disk，process，network五个基础方面着手。psutil是python一个跨平台的模块，用于从操作系统获取以上提到的甚至更多的信息。可以在系统监控，分析，进程管理，进程资源管控方面提供帮助。pstuit提 ...">
+
+            <meta property="og:image" content="http://hongday.net/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@#">
+        <meta name="twitter:title" content="使用psutil了解CPU的运行状态">
+
+            <meta name="twitter:image" content="http://static.hongday.net/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="了解一个操作系统，可以从操作系统的cpu，memory，disk，process，network五个基础方面着手。psutil是python一个跨平台的模块，用于从操作系统获取以上提到的甚至更多的信息。可以在系统监控，分析，进程管理，进程资源管控方面提供帮助。pstuit提 ...">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://hongday.net/">dreamChou24'Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://hongday.net/archives.html">Archives</a></li>
+                    <li><a href="http://hongday.net/categories.html">Categories</a></li>
+                    <li><a href="http://hongday.net/tags.html">Tags</a></li>
+                            <li><a href="http://hongday.net/pages/About.html">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://static.hongday.net/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>使用psutil了解CPU的运行状态</h1>
+                        <span class="meta">Posted by
+                                <a href="http://hongday.net/author/dreamchou24.html">dreamChou24</a>
+                             on 四 20 十月 2016
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>了解一个操作系统，可以从操作系统的cpu，memory，disk，process，network五个基础方面着手。psutil是python一个跨平台的模块，用于从操作系统获取以上提到的甚至更多的信息。可以在系统监控，分析，进程管理，进程资源管控方面提供帮助。pstuit提供了诸如ps,top,lsof等命令的功能，并且支持linux,windows,osx等操作系统，32或者64位均支持。最新版本的psutil使用python的版本需要在2.6到3.5之间。</p>
+<blockquote>
+<p>psutil is a cross-platform library for retrieving information onrunning processes and system utilization (CPU, memory, disks, network)in Python.
+psutil (process and system utilities) is a cross-platform library for retrieving information on running processes and system utilization (CPU, memory, disks, network) in Python. It is useful mainly for system monitoring, profiling and limiting process resources and management of running processes. It implements many functionalities offered by command line tools such as: ps, top, lsof, netstat, ifconfig, who, df, kill, free, nice, ionice, iostat, iotop, uptime, pidof, tty, taskset, pmap. It currently supports Linux, Windows, OSX, Sun Solaris, FreeBSD, OpenBSD and NetBSD, both 32-bit and 64-bit architectures, with Python versions from 2.6 to 3.5 (users of Python 2.4 and 2.5 may use 2.1.3 version). PyPy is also known to work.</p>
+</blockquote>
+<p>使用psutil模块可以得到操作系统的cpu信息。这里以centos6.5为例。</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">psutil</span>
+<span class="c1">#使用参数percpu=True后，对于多核cpu的操作系统，会列出所有核的信息。</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_times</span><span class="p">(</span><span class="n">percpu</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> 
+<span class="p">[</span><span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">7.46</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">31.0</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">80622.72</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">16.49</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">4.73</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">41.09</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">80562.08</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">3.92</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">25.73</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">18.78</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">12.58</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">80456.14</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">15.9</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.71</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+<span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">11.91</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">5.38</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">80536.34</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">3.01</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)]</span>
+<span class="c1">#若不使用percpu=True，只是列出当前python进程所占用的cpu核的信息。</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_times</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">43.02</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">90.26</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">322304.21</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">39.33</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">26.94</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+
+
+<p>信息类似使用top命令中显示出来的cpu的信息。
+us，或者user是指cpu运行总时间里，用户进程花销的时间占比。
+sy，或者system是指cpu运行总时间里，系统进程花销的时间占比。</p>
+<blockquote>
+<p>ni是nice的意思，nice是什么呢，每个linux进程都有个优先级，优先级高的进程有优先执行的权利，这个叫做pri。进程除了优先级外，还有个优先级的修正值。即比如你原先的优先级是20，然后修正值为-2，那么你最后的进程优先级为18。这个修正值就叫做进程的nice值。</p>
+</blockquote>
+<p>ni,或者nice就是指cpu运行总时间里，系统对进程优先级进行修正的时间占比。
+id，或者idle，cpu空闲时间，自然越高代表cpu负载越轻。
+wa，或者iowait，即在cpu运行总时间里，因等待Ip导致cpu中断等待的时间占比。
+hi，si,硬中断和软中断，由硬件，软件造成的cpu中断等待。
+st，偷取，主要在虚拟机上进行查看，本来应该用于虚拟上的cpu时间因为虚拟控制软件转移走的时间。</p>
+<div class="highlight"><pre><span></span><span class="n">us</span><span class="o">:</span> <span class="n">user</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="k">in</span> <span class="n">user</span> <span class="n">space</span>
+<span class="n">sy</span><span class="o">:</span> <span class="n">system</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="k">in</span> <span class="n">kernel</span> <span class="n">space</span>
+<span class="n">ni</span><span class="o">:</span> <span class="n">user</span> <span class="n">nice</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">on</span> <span class="n">low</span> <span class="n">priority</span> <span class="n">processes</span>
+<span class="n">id</span><span class="o">:</span> <span class="n">idle</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">idle</span>
+<span class="n">wa</span><span class="o">:</span> <span class="n">io</span> <span class="n">wait</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="k">in</span> <span class="n">wait</span> <span class="o">(</span><span class="n">on</span> <span class="n">disk</span><span class="o">)</span>
+<span class="n">hi</span><span class="o">:</span> <span class="n">hardware</span> <span class="n">irq</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">servicing</span><span class="o">/</span><span class="n">handling</span> <span class="n">hardware</span> <span class="n">interrupts</span>
+<span class="n">si</span><span class="o">:</span> <span class="n">software</span> <span class="n">irq</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">servicing</span><span class="o">/</span><span class="n">handling</span> <span class="n">software</span> <span class="n">interrupts</span>
+<span class="n">st</span><span class="o">:</span> <span class="n">steal</span> <span class="n">time</span> <span class="o">-</span> <span class="o">-</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="k">in</span> <span class="n">involuntary</span> <span class="n">wait</span> <span class="n">by</span> <span class="n">virtual</span> <span class="n">cpu</span> <span class="k">while</span> <span class="n">hypervisor</span> <span class="k">is</span> <span class="n">servicing</span> <span class="n">another</span> <span class="n">processor</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">stolen</span> <span class="n">from</span> <span class="n">a</span> <span class="n">virtual</span> <span class="n">machine</span>
+</pre></div>
+
+
+<p>关于cpu，pstuil还有更多的细节方法，可以查看<a href="https://pypi.python.org/pypi/psutil">官方文档</a></p>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="http://hongday.net/tag/python.html">Python</a>, <a href="http://hongday.net/tag/psutil.html">Psutil</a>, <a href="http://hongday.net/tag/linux.html">Linux</a></p>
+        </div>
+
+    <hr>
+
+        <div class="comments">
+            <!-- 多说热评文章 start -->
+			<div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+			<!-- 多说热评文章 end -->
+            <!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="20161020234805" data-title="使用psutil了解CPU的运行状态" data-url="http://hongday.net/20161020234805.html"></div>
+			<!-- 多说评论框 end -->
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://static.hongday.net/theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://static.hongday.net/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="http://static.hongday.net/theme/js/clean-blog.min.js"></script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hongday"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</body>
+
+</html>
