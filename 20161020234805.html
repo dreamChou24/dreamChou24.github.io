@@ -141,22 +141,11 @@ sy，或者system是指cpu运行总时间里，系统进程花销的时间占比
 <blockquote>
 <p>ni是nice的意思，nice是什么呢，每个linux进程都有个优先级，优先级高的进程有优先执行的权利，这个叫做pri。进程除了优先级外，还有个优先级的修正值。即比如你原先的优先级是20，然后修正值为-2，那么你最后的进程优先级为18。这个修正值就叫做进程的nice值。</p>
 </blockquote>
-<p>ni,或者nice就是指cpu运行总时间里，系统对进程优先级进行修正的时间占比。
-id，或者idle，cpu空闲时间，自然越高代表cpu负载越轻。
-wa，或者iowait，即在cpu运行总时间里，因等待Ip导致cpu中断等待的时间占比。
-hi，si,硬中断和软中断，由硬件，软件造成的cpu中断等待。
-st，偷取，主要在虚拟机上进行查看，本来应该用于虚拟上的cpu时间因为虚拟控制软件转移走的时间。</p>
-<div class="highlight"><pre><span></span><span class="n">us</span><span class="o">:</span> <span class="n">user</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="k">in</span> <span class="n">user</span> <span class="n">space</span>
-<span class="n">sy</span><span class="o">:</span> <span class="n">system</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="k">in</span> <span class="n">kernel</span> <span class="n">space</span>
-<span class="n">ni</span><span class="o">:</span> <span class="n">user</span> <span class="n">nice</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">on</span> <span class="n">low</span> <span class="n">priority</span> <span class="n">processes</span>
-<span class="n">id</span><span class="o">:</span> <span class="n">idle</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">idle</span>
-<span class="n">wa</span><span class="o">:</span> <span class="n">io</span> <span class="n">wait</span> <span class="n">cpu</span> <span class="n">time</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="k">in</span> <span class="n">wait</span> <span class="o">(</span><span class="n">on</span> <span class="n">disk</span><span class="o">)</span>
-<span class="n">hi</span><span class="o">:</span> <span class="n">hardware</span> <span class="n">irq</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">servicing</span><span class="o">/</span><span class="n">handling</span> <span class="n">hardware</span> <span class="n">interrupts</span>
-<span class="n">si</span><span class="o">:</span> <span class="n">software</span> <span class="n">irq</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">spent</span> <span class="n">servicing</span><span class="o">/</span><span class="n">handling</span> <span class="n">software</span> <span class="n">interrupts</span>
-<span class="n">st</span><span class="o">:</span> <span class="n">steal</span> <span class="n">time</span> <span class="o">-</span> <span class="o">-</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="k">in</span> <span class="n">involuntary</span> <span class="n">wait</span> <span class="n">by</span> <span class="n">virtual</span> <span class="n">cpu</span> <span class="k">while</span> <span class="n">hypervisor</span> <span class="k">is</span> <span class="n">servicing</span> <span class="n">another</span> <span class="n">processor</span> <span class="o">(</span><span class="n">or</span><span class="o">)</span> <span class="o">%</span> <span class="n">CPU</span> <span class="n">time</span> <span class="n">stolen</span> <span class="n">from</span> <span class="n">a</span> <span class="n">virtual</span> <span class="n">machine</span>
-</pre></div>
-
-
+<p>ni,或者nice就是指cpu运行总时间里，系统对进程优先级进行修正的时间占比。</p>
+<p>id，或者idle，cpu空闲时间，自然越高代表cpu负载越轻。</p>
+<p>wa，或者iowait，即在cpu运行总时间里，因等待Ip导致cpu中断等待的时间占比。</p>
+<p>hi，si,硬中断和软中断，由硬件，软件造成的cpu中断等待。</p>
+<p>st，偷取，主要在虚拟机上进行查看，本来应该用于虚拟上的cpu时间因为虚拟控制软件转移走的时间。</p>
 <p>关于cpu，pstuil还有更多的细节方法，可以查看<a href="https://pypi.python.org/pypi/psutil">官方文档</a></p>
     </article>
 
