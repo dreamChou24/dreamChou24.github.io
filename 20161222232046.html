@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>PEP8 Python编码规范记录</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://static.hongday.net/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://static.hongday.net/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://static.hongday.net/theme/css/code_blocks/monokai.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="PEP8是一套Python编码规范，如果团队中所有人都遵循一个规范进行编码，那么各人代码的可读性将会提高，整个团队的效率也将高效。 Python也内置了PEP8规范检测模块，该模块用于检测目标代码是否符合PEP8规范。此为后话。 一、代码编排 ...">
+
+        <meta name="author" content="dreamChou24">
+
+        <meta name="tags" content="Python">
+        <meta name="tags" content="PEP8">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="dreamChou24'Blog">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="http://hongday.net/author/dreamchou24.html">
+	<meta property="og:url" content="http://hongday.net/20161222232046.html">
+	<meta property="og:title" content="PEP8 Python编码规范记录">
+	<meta property="article:published_time" content="2016-12-22 23:20:46+01:00">
+            <meta property="og:description" content="PEP8是一套Python编码规范，如果团队中所有人都遵循一个规范进行编码，那么各人代码的可读性将会提高，整个团队的效率也将高效。 Python也内置了PEP8规范检测模块，该模块用于检测目标代码是否符合PEP8规范。此为后话。 一、代码编排 ...">
+
+            <meta property="og:image" content="http://hongday.net/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@#">
+        <meta name="twitter:title" content="PEP8 Python编码规范记录">
+
+            <meta name="twitter:image" content="http://static.hongday.net/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="PEP8是一套Python编码规范，如果团队中所有人都遵循一个规范进行编码，那么各人代码的可读性将会提高，整个团队的效率也将高效。 Python也内置了PEP8规范检测模块，该模块用于检测目标代码是否符合PEP8规范。此为后话。 一、代码编排 ...">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://hongday.net/">dreamChou24'Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://hongday.net/archives.html">Archives</a></li>
+                    <li><a href="http://hongday.net/categories.html">Categories</a></li>
+                    <li><a href="http://hongday.net/tags.html">Tags</a></li>
+                            <li><a href="http://hongday.net/pages/About.html">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://static.hongday.net/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>PEP8 Python编码规范记录</h1>
+                        <span class="meta">Posted by
+                                <a href="http://hongday.net/author/dreamchou24.html">dreamChou24</a>
+                             on 四 22 十二月 2016
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>PEP8是一套Python编码规范，如果团队中所有人都遵循一个规范进行编码，那么各人代码的可读性将会提高，整个团队的效率也将高效。</p>
+<p>Python也内置了PEP8规范检测模块，该模块用于检测目标代码是否符合PEP8规范。此为后话。</p>
+<h4>一、代码编排</h4>
+<ol>
+<li>缩进。4个空格的缩进（编辑器都可以完成此功能），不使用<code>Tap</code>，更不能混合使用<code>Tap</code>和空格。</li>
+<li>每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。</li>
+<li>类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行。</li>
+</ol>
+<h4>二、文档编排</h4>
+<ol>
+<li>模块内容的顺序：模块说明和docstring—import—globals&amp;constants—其他定义。其中import部分，又按标准、三方和自己编写顺序依次排放，之间空一行。</li>
+<li>不要在一句import中多个库，比如import os, sys不推荐。</li>
+<li>如果采用from XX import XX引用库，可以省略‘module.’，都是可能出现命名冲突，这时就要采用import XX。</li>
+</ol>
+<h4>三、空格的使用</h4>
+<p>总体原则，避免不必要的空格。</p>
+<ol>
+<li>各种右括号前不要加空格。</li>
+<li>逗号、冒号、分号前不要加空格。</li>
+<li>函数的左括号前不要加空格。如<code>Func(1)</code>。</li>
+<li>序列的左括号前不要加空格。如<code>list[2]</code>。</li>
+<li>操作符左右各加一个空格，不要为了对齐增加空格。</li>
+<li>函数默认参数使用的赋值符左右省略空格。</li>
+<li>不要将多句语句写在同一行，尽管使用‘；’允许。</li>
+<li><code>if/for/while</code>语句中，即使执行语句只有一句，也必须另起一行。</li>
+</ol>
+<h4>四、注释</h4>
+<p>总体原则，错误的注释不如没有注释。所以当一段代码发生变化时，第一件事就是要修改注释！</p>
+<p>注释必须使用英文，最好是完整的句子，首字母大写，句后要有结束符，结束符后跟两个空格，开始下一句。如果是短语，可以省略结束符。</p>
+<ol>
+<li>
+<p>块注释，在一段代码前增加的注释。在<code>#</code>后加一空格。段落之间以只有<code>#</code>的行间隔。比如：</p>
+<div class="highlight"><pre><span></span># Description : Module config.
+# 
+# Input : None
+#
+# Output : None
+</pre></div>
+
+
+</li>
+<li>
+<p>行注释，在一句代码后加注释。比如：（但是这种方式尽量少使用。）</p>
+<div class="highlight"><pre><span></span>x = x + 1 # Increment x
+</pre></div>
+
+
+</li>
+<li>
+<p>避免无谓的注释。</p>
+</li>
+</ol>
+<h4>五、文档描述</h4>
+<ol>
+<li>为所有的共有模块、函数、类、方法写docstrings；非共有的没有必要，但是可以写注释（在def的下一行）。</li>
+<li>如果docstring要换行，参考如下例子,详见PEP 257<div class="highlight"><pre><span></span>&quot;&quot;&quot;Return a foobang
+
+Optional plotz says to frobnicate the bizbaz first.
+
+&quot;&quot;&quot;
+</pre></div>
+
+
+</li>
+</ol>
+<h4>六、命名规范</h4>
+<p>总体原则，新编代码必须按下面命名风格进行，现有库的编码尽量保持风格。</p>
+<ol>
+<li>尽量单独使用小写字母<code>l</code>，大写字母<code>O</code>等容易混淆的字母。</li>
+<li>模块命名尽量短小，使用全部小写的方式，可以使用下划线。</li>
+<li>包命名尽量短小，使用全部小写的方式，不可以使用下划线。</li>
+<li>类的命名使用<code>CapWords</code>的方式，模块内部使用的类采用<code>_CapWords</code>的方式。</li>
+<li>异常命名使用<code>CapWords+Error</code>后缀的方式。</li>
+<li>全局变量尽量只在模块内有效，类似C语言中的static。实现方法有两种，一是<code>__all__</code>机制;二是前缀一个下划线。</li>
+<li>函数命名使用全部小写的方式，可以使用下划线。</li>
+<li>常量命名使用全部大写的方式，可以使用下划线。</li>
+<li>类的属性（方法和变量）命名使用全部小写的方式，可以使用下划线。</li>
+<li>类的属性有3种作用域<code>public</code>、<code>non-public</code>和<code>subclass</code> API，可以理解成C++中的public、private、protected，non-public属性前，前缀一条下划线。</li>
+<li>类的属性若与关键字名字冲突，后缀一下划线，尽量不要使用缩略等其他方式。</li>
+<li>为避免与子类属性命名冲突，在类的一些属性前，前缀两条下划线。比如：类<code>Foo</code>中声明<code>__a</code>,访问时，只能通过<code>Foo._Foo__a</code>，避免歧义。如果子类也叫Foo，那就无能为力了。</li>
+<li>类的方法第一个参数必须是<code>self</code>，而静态方法第一个参数必须是<code>cls</code>。</li>
+</ol>
+<h4>七、编码建议</h4>
+<ol>
+<li>编码中考虑到其他python实现的效率等问题，比如运算符<code>+</code>在CPython（Python）中效率很高，都是Jython中却非常低，所以应该采用<code>.join()</code>的方式。</li>
+<li>尽可能使用<code>is</code>，<code>is not</code>取代<code>==</code>，比如<code>if x is not None</code> 要优于<code>if x</code>。</li>
+<li>使用基于类的异常，每个模块或包都有自己的异常类，此异常类继承自<code>Exception</code>。</li>
+<li>异常中不要使用裸露的<code>except</code>，<code>except</code>后跟具体的<code>exceptions</code>。</li>
+<li>
+<p>异常中<code>try</code>的代码尽可能少。比如：</p>
+<div class="highlight"><pre><span></span><span class="k">try</span><span class="o">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">collection</span><span class="o">[</span><span class="n">key</span><span class="o">]</span>
+<span class="n">except</span> <span class="n">KeyError</span><span class="o">:</span>
+    <span class="k">return</span> <span class="n">key_not_found</span><span class="o">(</span><span class="n">key</span><span class="o">)</span>
+<span class="k">else</span><span class="o">:</span>
+    <span class="k">return</span> <span class="n">handle_value</span><span class="o">(</span><span class="n">value</span><span class="o">)</span>
+</pre></div>
+
+
+<p>要优于</p>
+<div class="highlight"><pre><span></span><span class="k">try</span><span class="o">:</span>
+    <span class="k">return</span> <span class="n">handle_value</span><span class="o">(</span><span class="n">collection</span><span class="o">[</span><span class="n">key</span><span class="o">])</span>
+<span class="n">except</span> <span class="n">KeyError</span><span class="o">:</span>
+    <span class="k">return</span> <span class="n">key_not_found</span><span class="o">(</span><span class="n">key</span><span class="o">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>使用<code>startswith()</code>， <code>endswith()</code>代替切片进行序列前缀或后缀的检查。比如：</p>
+<div class="highlight"><pre><span></span><span class="n">Yes</span><span class="o">:</span> <span class="k">if</span> <span class="n">foo</span><span class="o">.</span><span class="na">startswith</span><span class="o">(</span><span class="err">‘</span><span class="n">bar</span><span class="err">’</span><span class="o">):</span>
+</pre></div>
+
+
+<p>优于</p>
+<div class="highlight"><pre><span></span><span class="n">No</span><span class="o">:</span> <span class="k">if</span> <span class="n">foo</span><span class="o">[:</span><span class="mi">3</span><span class="o">]</span> <span class="o">==</span> <span class="err">‘</span><span class="n">bar</span><span class="err">’</span><span class="o">:</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>使用<code>isinstance()</code>比较对象的类型。比如：</p>
+<div class="highlight"><pre><span></span><span class="n">Yes</span><span class="o">:</span> <span class="k">if</span> <span class="n">isinstance</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="n">int</span><span class="o">):</span>
+</pre></div>
+
+
+<p>优于</p>
+<div class="highlight"><pre><span></span><span class="n">No</span><span class="o">:</span> <span class="k">if</span> <span class="n">type</span><span class="o">(</span><span class="n">obj</span><span class="o">)</span> <span class="k">is</span> <span class="n">type</span><span class="o">(</span><span class="mi">1</span><span class="o">):</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>判断序列空或不空，有如下规则</p>
+<div class="highlight"><pre><span></span><span class="n">Yes</span><span class="o">:</span> <span class="k">if</span> <span class="n">not</span> <span class="n">seq</span><span class="o">:/</span><span class="k">if</span> <span class="n">seq</span><span class="o">:</span>
+</pre></div>
+
+
+<p>优于</p>
+<div class="highlight"><pre><span></span><span class="n">No</span><span class="o">:</span> <span class="k">if</span> <span class="n">len</span><span class="o">(</span><span class="n">seq</span><span class="o">):/</span><span class="k">if</span> <span class="n">not</span> <span class="n">len</span><span class="o">(</span><span class="n">seq</span><span class="o">):</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>字符串不要以空格收尾。</p>
+</li>
+<li>二进制数据判断使用<code>if boolvalue</code>的方式。</li>
+</ol>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="http://hongday.net/tag/python.html">Python</a>, <a href="http://hongday.net/tag/pep8.html">PEP8</a></p>
+        </div>
+
+    <hr>
+
+        <div class="comments">
+            <!-- 多说热评文章 start -->
+			<div class="ds-top-threads" data-range="monthly" data-num-items="5"></div>
+			<!-- 多说热评文章 end -->
+            <!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="20161222232046" data-title="PEP8 Python编码规范记录" data-url="http://hongday.net/20161222232046.html"></div>
+			<!-- 多说评论框 end -->
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://static.hongday.net/theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://static.hongday.net/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="http://static.hongday.net/theme/js/clean-blog.min.js"></script>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hongday"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</body>
+
+</html>
